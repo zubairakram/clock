@@ -1,14 +1,19 @@
 <script>
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
 let time = new Date();
 $: hours = time.getHours();
 $: minutes = time.getMinutes();
 $: seconds = time.getSeconds();
 $: dayorNight = (hours >= 12) ? "PM" : "AM";
+
 onMount(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
         time = new Date();
     }, 1000);
+})
+
+onDestroy(() => {
+    clearInterval(interval);
 })
 
 </script>
