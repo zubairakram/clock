@@ -1,30 +1,29 @@
 <script>
-	export let name;
+    import { onMount } from 'svelte';
+let time = new Date();
+$: hours = time.getHours();
+$: minutes = time.getMinutes();
+$: seconds = time.getSeconds();
+$: dayorNight = (hours >= 12) ? "PM" : "AM";
+onMount(() => {
+    setInterval(() => {
+        time = new Date();
+    }, 1000);
+})
+
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<div>{ hours }: { minutes }: { seconds } { dayorNight }</div>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+    div {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        color: #ff3e00;
+        font-size: 5em;
+        font-weight: 100;
+    }
 </style>
