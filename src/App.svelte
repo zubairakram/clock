@@ -1,20 +1,20 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-let time = new Date();
-$: hours = (time.getHours() > 12)? time.getHours()-12: time.getHours();
-$: minutes = time.getMinutes();
-$: seconds = time.getSeconds();
-$: dayorNight = (hours >= 12) ? "PM" : "AM";
+    let time = new Date();
+    $: hours = (time.getHours() > 12)? time.getHours()-12: time.getHours();
+    $: minutes = time.getMinutes();
+    $: seconds = time.getSeconds();
+    $: dayorNight = (hours >= 12) ? "PM" : "AM";
 
-onMount(() => {
-    const interval = setInterval(() => {
-        time = new Date();
-    }, 1000);
-})
+    onMount(() => {
+        const interval = setInterval(() => {
+            time = new Date();
+        }, 1000);
+    })
 
-onDestroy(() => {
-    clearInterval(interval);
-})
+    onDestroy(() => {
+        clearInterval(interval);
+    })
 
 </script>
 
